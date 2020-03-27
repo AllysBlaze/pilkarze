@@ -5,8 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Piłkarze"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Loaded="Otwarcie" Closing="Zamkniecie">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel x:Name="stackPanelPanel" Grid.Row="0" Grid.Column="0">
+            <Label x:Name="labelImie" Margin="5" Content = "Podaj imie"/>
+            <local:textBoxBorderControl x:Name="textBoxImie" Margin="5" />
+                <Label x:Name="labelNazwisko" Margin="5" Content = "Podaj nazwisko"/>
+            <local:textBoxBorderControl x:Name="textBoxNazwisko" Margin="5" />
+
+            <Label x:Name="labelPWiek" Margin="5" Content = "Podaj wiek"/>
+            <Slider x:Name="sliderWiek" TickFrequency="1" IsSnapToTickEnabled="True" Maximum="100" Margin="5"/>
+            <Label x:Name="labelWiek" Content="{Binding ElementName=sliderWiek, Path=Value, UpdateSourceTrigger=PropertyChanged}"  Width="40" Margin="5"/>
+            <Label x:Name="labelPWaga" Margin="5" Content = "Podaj wagę (kg)"/>
+            <Slider x:Name="sliderWaga" TickFrequency="1" IsSnapToTickEnabled="True" Maximum="150" Margin="5"/>
+            <Label x:Name="labelWaga" Content="{ Binding ElementName=sliderWaga, Path=Value, UpdateSourceTrigger=PropertyChanged}" Width="40" Margin="5"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    
+                </Grid.RowDefinitions>
+                <Button x:Name="buttonDodaj" Grid.Column="0" Grid.Row="0" Content="Dodaj" Margin="10,5,7,5" Click="buttonDodaj_Click"/>
+                <Button x:Name="buttonEdytuj" Grid.Column="1" Grid.Row="0" Content="Edytuj" Margin="7,5,10,5" Click="buttonEdytuj_Click"/>
+                <Button x:Name="buttonUsun" Grid.Column="2" Grid.Row="0" Content="Usuń" Margin="7,5,10,5" Click="buttonUsun_Click"/>
+            </Grid>
+
+        </StackPanel>
+        <ListBox x:Name="listBox1" Grid.Column="1" Grid.Row="0" SelectionChanged="ListBox1_SelectionChanged_1"/>
+
     </Grid>
 </Window>
